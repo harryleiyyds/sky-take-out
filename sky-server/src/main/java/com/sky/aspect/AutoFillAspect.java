@@ -6,14 +6,12 @@ import com.sky.context.BaseContext;
 import com.sky.enumeration.OperationType;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDateTime;
 
 @Aspect
@@ -25,10 +23,12 @@ public class AutoFillAspect {
      * 切点：所有在 com.sky.mapper 包下的方法，并且方法上有 @AutoFIll 注解
      */
     @Pointcut("execution(* com.sky.mapper.*.*(..)) && @annotation(com.sky.annotation.AutoFIll)")
-    public void autoFillPointcut() {}
+    public void autoFillPointcut() {
+    }
 
     /**
      * 前置通知，在通知中进行公共字段的赋值
+     *
      * @param joinPoint
      */
     @Before("autoFillPointcut()")
