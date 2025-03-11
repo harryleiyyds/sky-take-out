@@ -32,7 +32,7 @@ public interface SetmealMapper {
     Integer countByCategoryId(Long id);
 
     /**
-     * 根据 id 查询套餐
+     * 分页查询套餐
      * @param setmealPageQueryDTO
      * @return
      */

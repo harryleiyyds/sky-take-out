@@ -1,6 +1,7 @@
 package com.sky.mapper;
 
 import com.sky.annotation.AutoFIll;
+import com.sky.entity.Dish;
 import com.sky.entity.SetmealDish;
 import com.sky.enumeration.OperationType;
 import org.apache.ibatis.annotations.Delete;
