@@ -56,4 +56,7 @@ public interface DishMapper {
      * @param ids
      */
     void deleteByIds(List<Long> ids);
+
+    @AutoFIll(value = OperationType.UPDATE)
+    void update(Dish dish);
 }
