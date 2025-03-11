@@ -75,19 +75,13 @@ public class SetmealServiceImpl implements SetmealService {
     public void deleteBatch(List<Long> ids) {
         ids.forEach(id -> {
             Setmeal setmeal = setmealMapper.getById(id);
-            if (setmeal.getStatus().equals(StatusConstant.ENABLE)) {
+            if (StatusConstant.ENABLE.equals(setmeal.getStatus())) {
                 throw new DeletionNotAllowedException(MessageConstant.SETMEAL_ON_SALE);
             }
         });
-        /*ids.forEach(id -> {
-            setmealMapper.deleteById(id);
-            setmealDishMapper.deleteBySetmealId(id);
-        });*/
 
         setmealMapper.deleteByIds(ids);
         setmealDishMapper.deleteBySetmealIds(ids);
-
-
     }
 
     /**
@@ -101,12 +95,11 @@ public class SetmealServiceImpl implements SetmealService {
         // 根据 id 查询套餐
         Setmeal setmeal = setmealMapper.getById(id);
 
-        SetmealVO setmealVO = new SetmealVO();
-        BeanUtils.copyProperties(setmeal, setmealVO);
-
         // 根据套餐 id 查询套餐菜品关系
         List<SetmealDish> setmealDishes = setmealDishMapper.getBySetmealId(id);
 
+        SetmealVO setmealVO = new SetmealVO();
+        BeanUtils.copyProperties(setmeal, setmealVO);
         setmealVO.setSetmealDishes(setmealDishes);
 
         return setmealVO;

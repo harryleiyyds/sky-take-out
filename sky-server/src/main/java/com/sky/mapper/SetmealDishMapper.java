@@ -15,6 +15,7 @@ public interface SetmealDishMapper {
 
     /**
      * 根据菜品 id 查询套餐 id
+     *
      * @param dishId
      * @return
      */
@@ -22,12 +23,14 @@ public interface SetmealDishMapper {
 
     /**
      * 批量插入套餐菜品关系
+     *
      * @param setmealDishes
      */
     void insertBatch(List<SetmealDish> setmealDishes);
 
     /**
      * 根据套餐 id 删除套餐菜品关系
+     *
      * @param setmealId
      */
     @Delete("delete from setmeal_dish where setmeal_id = #{setmealId}")
@@ -35,12 +38,14 @@ public interface SetmealDishMapper {
 
     /**
      * 根据套餐 id 批量删除套餐菜品关系
+     *
      * @param setmealIds
      */
     void deleteBySetmealIds(List<Long> setmealIds);
 
     /**
      * 根据套餐 id 查询套餐菜品关系
+     *
      * @param setmealId
      * @return
      */

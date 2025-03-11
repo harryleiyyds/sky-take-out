@@ -12,6 +12,7 @@ import java.util.List;
 public interface SetmealService {
     /**
      * 新增套餐
+     *
      * @param setmealDTO
      */
     @AutoFIll(value = OperationType.INSERT)
@@ -27,12 +28,14 @@ public interface SetmealService {
 
     /**
      * 批量删除套餐
+     *
      * @param ids
      */
     void deleteBatch(List<Long> ids);
 
     /**
      * 根据 id 查询套餐
+     *
      * @param id
      * @return
      */
@@ -40,6 +43,7 @@ public interface SetmealService {
 
     /**
      * 修改套餐
+     *
      * @param setmealDTO
      */
     @AutoFIll(value = OperationType.UPDATE)
@@ -47,6 +51,7 @@ public interface SetmealService {
 
     /**
      * 启用或禁用套餐
+     *
      * @param status
      * @param id
      */

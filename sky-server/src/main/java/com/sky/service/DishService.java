@@ -35,6 +35,7 @@ public interface DishService {
 
     /**
      * 根据 id 查询菜品和对应的口味数据
+     *
      * @param id
      * @return
      */
@@ -42,12 +43,14 @@ public interface DishService {
 
     /**
      * 根据 id 修改菜品和对应的口味数据
+     *
      * @param dishDTO
      */
     void updateWithFlavor(DishDTO dishDTO);
 
     /**
      * 根据分类 id 查询菜品
+     *
      * @param categoryId
      * @return
      */

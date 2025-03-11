@@ -69,6 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 新增员工信息
+     *
      * @param employeeDTO
      */
     @Override
@@ -92,6 +93,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 分页查询员工信息
+     *
      * @param employeePageQueryDTO
      * @return
      */
@@ -104,6 +106,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 启用禁用员工帐号
+     *
      * @param status
      * @param id
      */
@@ -118,6 +121,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 根据 id 查询员工信息
+     *
      * @param id
      * @return
      */
@@ -130,6 +134,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 修改员工信息
+     *
      * @param employeeDTO
      */
     @Override

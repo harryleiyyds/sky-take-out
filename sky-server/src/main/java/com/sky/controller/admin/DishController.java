@@ -71,6 +71,7 @@ public class DishController {
 
     /**
      * 根据 id 查询菜品
+     *
      * @param id
      * @return
      */
@@ -84,12 +85,13 @@ public class DishController {
 
     /**
      * 修改菜品
+     *
      * @param dishDTO
      * @return
      */
     @PutMapping
     @ApiOperation("修改菜品")
-    public  Result<DishDTO> update(@RequestBody DishDTO dishDTO) {
+    public Result<DishDTO> update(@RequestBody DishDTO dishDTO) {
         log.info("修改菜品：{}", dishDTO);
         dishService.updateWithFlavor(dishDTO);
         return Result.success();
@@ -97,6 +99,7 @@ public class DishController {
 
     /**
      * 根据分类 id 查询菜品
+     *
      * @param categoryId
      * @return
      */

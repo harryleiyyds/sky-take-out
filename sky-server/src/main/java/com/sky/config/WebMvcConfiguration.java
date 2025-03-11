@@ -45,6 +45,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     /**
      * 通过 knife4j 生成接口文档
+     *
      * @return
      */
     @Bean
@@ -66,6 +67,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     /**
      * 设置静态资源映射
+     *
      * @param registry
      */
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -76,6 +78,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     /**
      * 扩展 Spring MVC 框架的消息转化器
+     *
      * @param converters
      */
     @Override

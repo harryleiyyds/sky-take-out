@@ -28,6 +28,7 @@ public class SetmealController {
 
     /**
      * 新增套餐
+     *
      * @param setmealDTO
      * @return
      */
@@ -41,6 +42,7 @@ public class SetmealController {
 
     /**
      * 分页查询套餐
+     *
      * @param setmealPageQueryDTO
      * @return
      */
@@ -54,6 +56,7 @@ public class SetmealController {
 
     /**
      * 批量删除套餐
+     *
      * @param ids
      * @return
      */
@@ -67,6 +70,7 @@ public class SetmealController {
 
     /**
      * 根据 id 查询套餐
+     *
      * @param id
      * @return
      */
@@ -80,6 +84,7 @@ public class SetmealController {
 
     /**
      * 修改套餐
+     *
      * @param setmealDTO
      * @return
      */
@@ -93,6 +98,7 @@ public class SetmealController {
 
     /**
      * 启用或禁用套餐
+     *
      * @param status
      * @param id
      * @return

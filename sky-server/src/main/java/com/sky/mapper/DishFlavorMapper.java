@@ -11,12 +11,14 @@ import java.util.List;
 public interface DishFlavorMapper {
     /**
      * 批量插入菜品口味
+     *
      * @param flavors
      */
     void insertBatch(List<DishFlavor> flavors);
 
     /**
      * 根据菜品 id 删除口味
+     *
      * @param dishId
      */
     @Delete("delete from dish_flavor where dish_id = #{dishId}")
@@ -24,12 +26,14 @@ public interface DishFlavorMapper {
 
     /**
      * 根据多个菜品 id 批量删除口味
+     *
      * @param dishIds
      */
     void deleteByDishIds(List<Long> dishIds);
 
     /**
      * 根据菜品 id 查询口味
+     *
      * @param dishId
      * @return
      */
