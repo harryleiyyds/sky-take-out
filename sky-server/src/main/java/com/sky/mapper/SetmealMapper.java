@@ -52,6 +52,13 @@ public interface SetmealMapper {
     Setmeal getById(Long id);
 
     /**
+     * 修改套餐
+     * @param setmeal
+     */
+    @AutoFIll(value = OperationType.UPDATE)
+    void update(Setmeal setmeal);
+
+    /**
      * 根据 id 删除套餐
      * @param id
      */
