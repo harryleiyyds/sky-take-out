@@ -1,0 +1,24 @@
+sky:
+  datasource:
+    driver-class-name: your_driver_class_name
+    host: your_host
+    port: your_port
+    database: your_database
+    username: your_username
+    password: your_password
+  alioss:
+    endpoint: your_endpoint
+    access-key-id: your_access_key_id
+    access-key-secret: your_access_key_secret
+    bucket-name: harrylei
+  redis:
+    host: your_host
+    port: your_port
+    password: your_password
+    database: your_database
+  wechat:
+    appid: your_appid
+    secret: your_secret
+  jwt:
+    admin-secret-key: your_admin_secret_key
+    user-secret-key: your_user_secret_key
