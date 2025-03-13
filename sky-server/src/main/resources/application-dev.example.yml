@@ -10,7 +10,7 @@ sky:
     endpoint: your_endpoint
     access-key-id: your_access_key_id
     access-key-secret: your_access_key_secret
-    bucket-name: harrylei
+    bucket-name: your_bucket_name
   redis:
     host: your_host
     port: your_port
