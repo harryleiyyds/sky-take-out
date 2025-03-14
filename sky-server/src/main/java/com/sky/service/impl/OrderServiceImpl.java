@@ -45,6 +45,8 @@ public class OrderServiceImpl implements OrderService {
     private UserMapper userMapper;
     @Autowired
     private WeChatPayUtil weChatPayUtil;
+    @Autowired
+    private DishMapper dishMapper;
 
     /**
      * 提交订单
@@ -256,6 +258,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 再来一单
+     *
      * @param id
      */
     @Override
@@ -272,5 +275,52 @@ public class OrderServiceImpl implements OrderService {
         }).collect(Collectors.toList());
 
         shoppingCartMapper.insertBatch(shoppingCartList);
+    }
+
+    /**
+     * 订单搜索
+     *
+     * @param ordersPageQueryDTO
+     * @return
+     */
+    @Override
+    public PageResult conditionSearch(OrdersPageQueryDTO ordersPageQueryDTO) {
+        PageHelper.startPage(ordersPageQueryDTO.getPage(), ordersPageQueryDTO.getPageSize());
+        Page<Orders> page = orderMapper.pageQuery(ordersPageQueryDTO);
+
+        List<OrderVO> orderVOList = getOrderVOList(page);
+        return new PageResult(page.getTotal(), orderVOList);
+    }
+
+    /**
+     * 封装订单列表
+     *
+     * @param page
+     * @return
+     */
+    private List<OrderVO> getOrderVOList(Page<Orders> page) {
+        List<OrderVO> orderVOList = new ArrayList<>();
+
+        List<Orders> ordersList = page.getResult();
+        if (ordersList != null && !ordersList.isEmpty()) {
+            for (Orders orders : ordersList) {
+                OrderVO orderVO = new OrderVO();
+                BeanUtils.copyProperties(orders, orderVO);
+                // 根据订单 id 查询订单明细
+                List<OrderDetail> orderDetailList = orderDetailMapper.getByOrderId(orders.getId());
+                orderVO.setOrderDetailList(orderDetailList);
+
+                List<String> orderDishList = orderDetailList.stream().map(orderDetail -> {
+                    String orderDish = orderDetail.getName() + "*" + orderDetail.getNumber() + ";";
+                    return orderDish;
+                }).collect(Collectors.toList());
+                String orderDishes = String.join("", orderDishList);
+
+                orderVO.setOrderDishes(orderDishes);
+
+                orderVOList.add(orderVO);
+            }
+        }
+        return orderVOList;
     }
 }
