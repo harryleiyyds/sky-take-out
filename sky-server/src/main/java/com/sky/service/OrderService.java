@@ -91,4 +91,11 @@ public interface OrderService {
      * @param ordersRejectionDTO
      */
     void rejectionById(OrdersRejectionDTO ordersRejectionDTO) throws Exception;
+
+    /**
+     * 取消订单
+     *
+     * @param ordersCancelDTO
+     */
+    void adminCancelById(OrdersCancelDTO ordersCancelDTO) throws Exception;
 }

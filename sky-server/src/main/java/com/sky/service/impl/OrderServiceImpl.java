@@ -376,6 +376,42 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
+     * 取消订单
+     * @param ordersCancelDTO
+     */
+    @Override
+    public void adminCancelById(OrdersCancelDTO ordersCancelDTO) throws Exception {
+        Long id = ordersCancelDTO.getId();
+        Orders ordersDB = orderMapper.getById(id);
+
+        if (ordersDB == null) {
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        } else if (!Orders.CONFIRMED.equals(ordersDB.getStatus())) {
+            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
+        }
+
+        Orders orders = Orders.builder()
+                .id(id)
+                .status(Orders.CANCELLED)
+                .cancelReason(ordersCancelDTO.getCancelReason())
+                .cancelTime(LocalDateTime.now())
+                .build();
+
+        if (Objects.equals(Orders.PAID, ordersDB.getPayStatus())) {
+            String refund = weChatPayUtil.refund(
+                    ordersDB.getNumber(), //商户订单号
+                    ordersDB.getNumber(), //微信支付订单号
+                    new BigDecimal("0.01"), //退款金额，单位 元
+                    new BigDecimal("0.01") //订单金额，单位 元
+            );
+            log.info("退款结果：{}", refund);
+            orders.setPayStatus(Orders.REFUND);
+        }
+
+        orderMapper.update(orders);
+    }
+
+    /**
      * 封装订单列表
      *
      * @param page
