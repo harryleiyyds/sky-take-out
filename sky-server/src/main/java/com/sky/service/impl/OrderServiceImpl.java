@@ -322,7 +322,7 @@ public class OrderServiceImpl implements OrderService {
         // 根据订单 id 查询订单
         Long id = ordersConfirmDTO.getId();
         Orders ordersDB = orderMapper.getById(id);
-        
+
         // 判断订单是否存在
         if (ordersDB == null) {
             throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
@@ -377,6 +377,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 取消订单
+     *
      * @param ordersCancelDTO
      */
     @Override
@@ -408,6 +409,28 @@ public class OrderServiceImpl implements OrderService {
             orders.setPayStatus(Orders.REFUND);
         }
 
+        orderMapper.update(orders);
+    }
+
+    /**
+     * 派送订单
+     *
+     * @param id
+     */
+    @Override
+    public void deliveryById(Long id) {
+        Orders ordersDB = orderMapper.getById(id);
+
+        if (ordersDB == null) {
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        } else if (!Objects.equals(Orders.CONFIRMED, ordersDB.getStatus())) {
+            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
+        }
+
+        Orders orders = Orders.builder()
+                .id(id)
+                .status(Orders.DELIVERY_IN_PROGRESS)
+                .build();
         orderMapper.update(orders);
     }
 
